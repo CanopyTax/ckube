@@ -41,7 +41,6 @@ nginx-3528986049-6v4c1
 ```
 
 Getting logs for the nginx service is easy with `ckube`
-For a single unspecified nginx pod:
 ```
 # single uspecified nginx pod:
 ckube logs nginx
