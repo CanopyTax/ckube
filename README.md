@@ -1,6 +1,15 @@
 # Concurrent kubectl
 A cli to simplify working with kubectl for some common workflows
 
+#### Installation
+```$xslt
+go get -u github.com/kardianos/govendor
+go get -u github.com/devonmoss/ckube
+cd $GOPATH/src/github.com/devonmoss/ckube
+govendor sync
+go install
+```
+
 #### Usage
 `ckube` lets you think in terms of [services](https://kubernetes.io/docs/concepts/services-networking/service/) instead of [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) (mostly).
 
