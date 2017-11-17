@@ -16,10 +16,10 @@ var lsCmd = &cobra.Command{
 
 Examples:
   # List all pods in the current namespace
-  ck ls
+  ckube ls
 
   # List all pods starting with 'nginx'
-  ck ls nginx`,
+  ckube ls nginx`,
 	Run: func(cmd *cobra.Command, args []string) {
 		pods := util.RawK8sOutput(namespace, context, "get", "pods")
 		if len(args) > 0 {

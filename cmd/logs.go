@@ -19,10 +19,10 @@ pods that start with the specified value.
 
 Examples:
   # Return logs for all my-cool-service pods
-  ck logs my-cool
+  ckube logs my-cool
 
   # Begin streaming the logs for all pods that begin with 'c'
-  ck logs -f c`,
+  ckube logs -f c`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serviceName := args[0]
 		pods := util.GetServicePods(serviceName, namespace, context)

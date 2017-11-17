@@ -19,17 +19,17 @@ var execCmd = &cobra.Command{
 
 Examples:
   # get output from running 'date' in a nginx pod, using first container of first pod by default
-  ck exec nginx date
+  ckube exec nginx date
 
   # get output from running 'date' in all nginx pods, using first container of each pod by default
-  ck exec -a nginx date
+  ckube exec -a nginx date
 
   # switch to raw terminal mode, sends stdin to 'bash' in a nginx pod and sends stdout/stderr from
   # 'bash' back to the client
-  ck exec -it nginx bash
+  ckube exec -it nginx bash
 
   # get output from an extended arg 'curl' command in all nginx pods
-  ck exec -a nginx -- curl https://google.com -v`,
+  ckube exec -a nginx -- curl https://google.com -v`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serviceName := args[0]
 		dashLength := cmd.ArgsLenAtDash()

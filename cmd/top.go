@@ -13,10 +13,10 @@ var topCmd = &cobra.Command{
 	Long: `View cpu and memory usage for pods
 For example:
   # view cpu and memory for all pods
-	ck top
+	ckube top
 
   # view cpu and memory for all pods with name containing 'nginx'
-	ck top nginx`,
+	ckube top nginx`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var pods []string
 		if len(args) > 0 {

@@ -14,7 +14,7 @@ var namespace string
 var context string
 
 var RootCmd = &cobra.Command{
-	Use:   "ck",
+	Use:   "ckube",
 	Short: "Concurrent Kubectl",
 	Long:  `A CLI to simplify working with kubectl.`,
 }
@@ -29,7 +29,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 	// variables declared here are global for the entire application (assuming subcommands are in the `cmd` directory
-	//RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ck.yaml)")
+	//RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ckube.yaml)")
 	// if options are added to the cli to be passed through to kubectl they should mimiic the naming
 	// used by kubectl whenever possible to provide a familiar and consistent experience
 	RootCmd.PersistentFlags().StringVarP(&namespace, "namespace", "n", "", "the kubernetes namespace (defaults to value currently used by kubectl)")
@@ -49,9 +49,9 @@ func initConfig() {
 			os.Exit(1)
 		}
 
-		// Search config in home directory with name ".ck" (without extension).
+		// Search config in home directory with name ".ckube" (without extension).
 		viper.AddConfigPath(home)
-		viper.SetConfigName(".ck")
+		viper.SetConfigName(".ckube")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
