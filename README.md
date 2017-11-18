@@ -1,4 +1,6 @@
 # Concurrent kubectl
+![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg)
+
 A cli to simplify working with kubectl for some common workflows
 
 #### Installation
