@@ -4,14 +4,10 @@ go:
 - 1.9.x
 install: 
 before_deploy:
-- go get -u github.com/kardianos/govendor
-- govendor sync
 - GOOS=linux GOARCH=amd64 go build -o ckube_linux_amd64
 - GOOS=linux GOARCH=386 go build -o ckube_linux_386
 - GOOS=linux GOARCH=arm go build -o ckube_linux_arm
 - GOOS=darwin GOARCH=amd64 go build -o ckube_darwin_amd64
-- GOOS=windows GOARCH=amd64 go build -o ckube_windows_amd64.exe
-- GOOS=windows GOARCH=386 go build -o ckube_windows_386.exe
 deploy:
   provider: releases
   api_key:
@@ -21,8 +17,6 @@ deploy:
   - ckube_linux_386
   - ckube_linux_arm
   - ckube_darwin_amd64
-  - ckube_windows_amd64.exe
-  - ckube_windows_386.exe
   on:
     tags: true
     repo: devonmoss/ckube
