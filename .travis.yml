@@ -17,6 +17,7 @@ deploy:
   - ckube_linux_386
   - ckube_linux_arm
   - ckube_darwin_amd64
+  skip_cleanup: true
   on:
     tags: true
     repo: devonmoss/ckube
