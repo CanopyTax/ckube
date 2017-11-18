@@ -1,5 +1,5 @@
 # Concurrent kubectl
-![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg)
+![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg) [![Build Status](https://travis-ci.org/devonmoss/ckube.svg?branch=master)](https://travis-ci.org/devonmoss/ckube)
 
 A cli to simplify working with kubectl for some common workflows
 
