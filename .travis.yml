@@ -1,0 +1,26 @@
+language: go
+go:
+- 1.8.x
+- 1.9.x
+install: 
+before_deploy:
+- GOOS=linux GOARCH=amd64 go build -o ckube_linux_amd64
+- GOOS=linux GOARCH=386 go build -o ckube_linux_386
+- GOOS=linux GOARCH=arm go build -o ckube_linux_arm
+- GOOS=darwin GOARCH=amd64 go build -o ckube_darwin_amd64
+- GOOS=windows GOARCH=amd64 go build -o ckube_windows_amd64.exe
+- GOOS=windows GOARCH=386 go build -o ckube_windows_386.exe
+deploy:
+  provider: releases
+  api_key:
+    secure: eTUbTLiLkl1GCB+HRXio3eWtGu0MRGgtmGJA3x5+Bsx7DVAY6x5wU4uuUeZlwVmMMinm7R3n7baoZ2cjPh3jSRLStsphAzFcPCIIZJot2E3cbykeiFEnbYtfXlH1vvXnEgVCyKlNgH7k3ID43CYwif9JU9mRVkSiIFXAjsCXnDMxarWr4bk7d//ymFZX2jO3AclJqk9bAUOJPyyIdCRHjHcvHTKX5BuaKY4Ct6jmLcGxw//sSDZvUvGaHTR9aFVVS3wim1/orwS1m4DxCrpljZ63J7rnxM/Ea3IuzB/ux73vmGoqPpCfNSxXiQBITKm6IeRusIBZqdpfeNiMjpLouVS4Zurcva9qYkSB7L/EHx9E+f+7mxeoPr++OSpTp05LCzRgkl8P0BRQ8Xev4LRtgZoCPkkGePZPzIwn+TTIETxcdomAJUByhJD4UuDifAfgUFCUd179hU/GaEVX+3TNekTPDtbKmR4BwuXSOUdwCQt1HBUSI3yJE7tgnaDudV12URYFXgDTuQvxQgbBA1NbJVL36L/NTNy/2HERwh6Z6tq/xQQAocu9/Nd8Q9gI0YJGv91mCQ+AZP9B96y9gJ0MsUiMJPn4OsXbtQcM2lFnC2uKMwdKoBQjnaU19z7vgl/NncJofRNfm5y7IM8QPBOUX5ueU9DcKwnflWXlk8WEAsE=
+  file:
+  - ckube_linux_amd64
+  - ckube_linux_386
+  - ckube_linux_arm
+  - ckube_darwin_amd64
+  - ckube_windows_amd64.exe
+  - ckube_windows_386.exe
+  on:
+    tags: true
+    repo: devonmoss/ckube
