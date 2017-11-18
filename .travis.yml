@@ -4,6 +4,8 @@ go:
 - 1.9.x
 install: 
 before_deploy:
+- go get -u github.com/kardianos/govendor
+- govendor sync
 - GOOS=linux GOARCH=amd64 go build -o ckube_linux_amd64
 - GOOS=linux GOARCH=386 go build -o ckube_linux_386
 - GOOS=linux GOARCH=arm go build -o ckube_linux_arm
