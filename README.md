@@ -4,13 +4,7 @@
 A cli to simplify working with kubectl for some common workflows
 
 #### Installation
-```$xslt
-go get -u github.com/kardianos/govendor
-go get -u github.com/devonmoss/ckube
-cd $GOPATH/src/github.com/devonmoss/ckube
-govendor sync
-go install
-```
+Find the latest binaries [here](https://github.com/devonmoss/ckube/releases/)
 
 #### Usage
 `ckube` lets you think in terms of [services](https://kubernetes.io/docs/concepts/services-networking/service/) instead of [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) (mostly).
@@ -66,3 +60,12 @@ ckube logs nginx -f
 Similar concurrent functionality exists for `exec`
 
 This readme could really use some gifs of ckube in action
+
+#### Contributing
+PR's accepted
+
+If you are looking to build the project:
+```$xslt
+go get -d github.com/devonmoss/ckube
+cd $GOPATH/src/github.com/devonmoss/ckube
+```
