@@ -56,10 +56,14 @@ ckube logs nginx
 # follow the logs
 ckube logs nginx -f
 ```
-![](https://github.com/devonmoss/ckube/blob/master/images/log-short.gif?raw=true)
+![](https://github.com/devonmoss/ckube/blob/master/images/logs.gif?raw=true)
 
 Similar concurrent functionality exists for `exec`
+![](https://github.com/devonmoss/ckube/blob/master/images/exec.gif?raw=true)
 
+![](https://github.com/devonmoss/ckube/blob/master/images/complex-exec.gif?raw=true)
+
+Read the blog post about `ckube` [here](https://devonmoss.com/concurrent-kubectl)
 
 #### Contributing
 PR's accepted
