@@ -12,6 +12,7 @@ import (
 var cfgFile string
 var namespace string
 var context string
+var kubeconfig string
 
 var RootCmd = &cobra.Command{
 	Use:   "ckube",
@@ -34,6 +35,7 @@ func init() {
 	// used by kubectl whenever possible to provide a familiar and consistent experience
 	RootCmd.PersistentFlags().StringVarP(&namespace, "namespace", "n", "", "the kubernetes namespace (defaults to value currently used by kubectl)")
 	RootCmd.PersistentFlags().StringVar(&context, "context", "", "the kubernetes context (defaults to value currently used by kubectl)")
+	RootCmd.PersistentFlags().StringVar(&kubeconfig, "kubeconfig", "", "path to kubeconfig file to use for CLI requests (defaults to $HOME/.kube/config)")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -59,5 +61,13 @@ func initConfig() {
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	}
+
+	if kubeconfig == "" {
+		if h := os.Getenv("HOME"); h != "" {
+			kubeconfig = fmt.Sprintf("%v/.kube/config", h)
+		} else {
+			panic(fmt.Errorf("error setting default kubeconfig. $HOME not set"))
+		}
 	}
 }
