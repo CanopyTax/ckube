@@ -1,5 +1,5 @@
 # Concurrent kubectl
-![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg) [![Build Status](https://travis-ci.org/devonmoss/ckube.svg?branch=master)](https://travis-ci.org/devonmoss/ckube)
+![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg) [![Build Status](https://travis-ci.org/devonmoss/ckube.svg?branch=master)](https://travis-ci.org/devonmoss/ckube) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A cli to simplify working with kubectl for some common workflows
 
