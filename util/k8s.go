@@ -4,12 +4,16 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/tools/clientcmd"
+	"text/tabwriter"
+	"os"
 )
 
 type OutputManager struct {
 	sync.RWMutex
 	output []string
-	Header string
+	HeaderColumns []string
 }
 
 func (o *OutputManager) Append(s ...string) {
@@ -24,10 +28,27 @@ func (o *OutputManager) GetOutput() []string {
 }
 
 func (o *OutputManager) Print() {
-	fmt.Println(o.Header)
-	for _, line := range o.output {
-		fmt.Println(line)
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.StripEscape)
+	var headerLine string
+	for _, s := range o.HeaderColumns {
+		headerLine += s + "\t"
 	}
+	fmt.Fprintln(w, headerLine)
+	for _, line := range o.output {
+		fmt.Fprintln(w, o.tabbedString(line))
+	}
+	w.Flush()
+}
+
+func (o *OutputManager) tabbedString(output string) string {
+	splits := strings.Split(output, " ")
+	var tabbedString string
+	for _, s := range splits {
+		if s != "" {
+			tabbedString += s + "\t"
+		}
+	}
+	return tabbedString
 }
 
 
@@ -98,4 +119,18 @@ func K8sCommandArgs(args []string, namespace string, context string) []string {
 		args = append(args, fmt.Sprintf("--context=%v", context))
 	}
 	return args
+}
+
+func GetClientset(kubeconfig string) *kubernetes.Clientset {
+	// use the current context in kubeconfig
+	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	clientset, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		panic(err.Error())
+	}
+	return clientset
 }

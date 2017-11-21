@@ -24,7 +24,7 @@ For example:
 		} else {
 			pods = util.GetPods(namespace, context)
 		}
-		oMan := &util.OutputManager{}
+		oMan := &util.OutputManager{HeaderColumns:[]string{"NAME", "CPU(cores)", "MEMORY(bytes)"}}
 		if len(pods) > 0 {
 			var wg sync.WaitGroup
 			for _, pod := range pods {
@@ -32,7 +32,6 @@ For example:
 				go func(p string) {
 					defer wg.Done()
 					lines := util.RawK8sOutput(namespace, context, "top", "pod", p)
-					oMan.Header = lines[0]
 					oMan.Append(lines[1])
 				}(pod)
 			}
