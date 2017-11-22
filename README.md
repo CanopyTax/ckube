@@ -28,7 +28,7 @@ Available Commands:
 Flags:
       --context string     the kubernetes context (defaults to value currently used by kubectl)
   -h, --help               help for ckube
-  -n, --namespace string   the kubernetes namespace (defaults to value currently used by kubectl)
+  -n, --namespace string   the kubernetes namespace (defaults to value currently used by kubectl) or 'all' for all namespaces
 
 Use "ckube [command] --help" for more information about a command.
 
