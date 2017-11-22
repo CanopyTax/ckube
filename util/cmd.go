@@ -9,6 +9,7 @@ import (
 )
 
 func RunCommand(name string, args ...string) []string {
+	//fmt.Printf("%v %v\n", name, args)
 	cmd := exec.Command(name, args...)
 
 	cmdOut, err := cmd.CombinedOutput()

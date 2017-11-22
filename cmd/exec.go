@@ -31,12 +31,16 @@ Examples:
   # get output from an extended arg 'curl' command in all nginx pods
   ckube exec -a nginx -- curl https://google.com -v`,
 	Run: func(cmd *cobra.Command, args []string) {
+		if labels != "" {
+			fmt.Println("using labels for exec is not yet supported")
+			return
+		}
 		serviceName := args[0]
 		dashLength := cmd.ArgsLenAtDash()
 		if dashLength > 0 {
 			postDashArgs = args[dashLength:]
 		}
-		pods := util.GetServicePods(serviceName, namespace, context)
+		pods := util.GetServicePods(serviceName, namespace, context, labels)
 		cm := util.ColorManager{}
 		if len(pods) == 0 {
 			fmt.Println("No matching containers")
@@ -48,7 +52,7 @@ Examples:
 		}
 		if tty && stdin {
 			pod := pods[0]
-			cmdArgs := util.K8sCommandArgs([]string{"exec", "-it", pod}, namespace, context)
+			cmdArgs := util.K8sCommandArgs([]string{"exec", "-it", pod}, namespace, context, "")
 			if len(postDashArgs) > 0 {
 				cmdArgs = append(cmdArgs, "--")
 				cmdArgs = append(cmdArgs, postDashArgs...)
@@ -63,7 +67,7 @@ Examples:
 				wg.Add(1)
 				go func(p string) {
 					defer wg.Done()
-					cmdArgs := util.K8sCommandArgs([]string{"exec", p}, namespace, context)
+					cmdArgs := util.K8sCommandArgs([]string{"exec", p}, namespace, context, "")
 					if len(postDashArgs) > 0 {
 						cmdArgs = append(cmdArgs, "--")
 						cmdArgs = append(cmdArgs, postDashArgs...)

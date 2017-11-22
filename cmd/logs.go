@@ -24,15 +24,18 @@ Examples:
   # Begin streaming the logs for all pods that begin with 'c'
   ckube logs -f c`,
 	Run: func(cmd *cobra.Command, args []string) {
-		serviceName := args[0]
-		pods := util.GetServicePods(serviceName, namespace, context)
-		cm := util.ColorManager{}
+		var serviceName string
+		if len(args) > 0 {
+			serviceName = args[0]
+		}
 
+		pods := util.GetServicePods(serviceName, namespace, context, labels)
+		cm := util.ColorManager{}
 		c := make(chan string)
 		if len(pods) > 0 {
 			if follow {
 				for _, pod := range pods {
-					cmdArgs := util.K8sCommandArgs([]string{"logs", "-f", pod}, namespace, context)
+					cmdArgs := util.K8sCommandArgs([]string{"logs", "-f", pod}, namespace, context, "")
 					go util.StreamCommand(c, cm.GetPrefix(pod), "kubectl", cmdArgs...)
 				}
 				for {
@@ -49,7 +52,7 @@ Examples:
 					wg.Add(1)
 					go func(p string) {
 						defer wg.Done()
-						cmdArgs := util.K8sCommandArgs([]string{"logs", p}, namespace, context)
+						cmdArgs := util.K8sCommandArgs([]string{"logs", p}, namespace, context, "")
 						prefix := cm.GetPrefix(p)
 						logs := util.RunCommand("kubectl", cmdArgs...)
 						for _, line := range logs {

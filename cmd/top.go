@@ -20,9 +20,9 @@ For example:
 	Run: func(cmd *cobra.Command, args []string) {
 		var pods []string
 		if len(args) > 0 {
-			pods = util.GetMatchingPods(args[0], namespace, context)
+			pods = util.GetMatchingPods(args[0], namespace, context, labels)
 		} else {
-			pods = util.GetPods(namespace, context)
+			pods = util.GetPods(namespace, context, labels)
 		}
 		oMan := &util.OutputManager{HeaderColumns:[]string{"NAME", "CPU(cores)", "MEMORY(bytes)"}}
 		if len(pods) > 0 {

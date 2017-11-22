@@ -52,22 +52,24 @@ func (o *OutputManager) tabbedString(output string) string {
 }
 
 
-func GetPods(namespace string, context string) []string {
+func GetPods(namespace string, context string, labels string) []string {
 	var pods []string
-	args := K8sCommandArgs([]string{"get", "pods"}, namespace, context)
+	args := K8sCommandArgs([]string{"get", "pods"}, namespace, context, labels)
 	cmdPods := RunCommand("kubectl", args...)
 
 	for _, podInfo := range cmdPods[1:] {
 		podSplit := strings.Split(podInfo, " ")
 		if len(podSplit) > 0 {
-			pods = append(pods, podSplit[0])
+			if podSplit[0] != "" {
+				pods = append(pods, podSplit[0])
+			}
 		}
 	}
 	return pods
 }
 
-func RawK8sOutput(namespace string, context string, args ...string) []string {
-	cmdArgs := K8sCommandArgs(args, namespace, context)
+func RawK8sOutput(namespace string, context string, labels string, args ...string) []string {
+	cmdArgs := K8sCommandArgs(args, namespace, context, labels)
 	output := RunCommand("kubectl", cmdArgs...)
 	return output
 }
@@ -91,9 +93,13 @@ func FilterOutput(lines []string, search string, stripHeader bool) []string {
 	return output
 }
 
-func GetServicePods(service string, namespace string, context string) []string {
+func GetServicePods(service string, namespace string, context string, labels string) []string {
 	var pods []string
-	for _, pod := range GetPods(namespace, context) {
+	allPods := GetPods(namespace, context, labels)
+	if service == "" {
+		return allPods
+	}
+	for _, pod := range allPods {
 		if strings.HasPrefix(pod, service) {
 			pods = append(pods, pod)
 		}
@@ -101,9 +107,13 @@ func GetServicePods(service string, namespace string, context string) []string {
 	return pods
 }
 
-func GetMatchingPods(service string, namespace string, context string) []string {
+func GetMatchingPods(service string, namespace string, context string, labels string) []string {
 	var pods []string
-	for _, pod := range GetPods(namespace, context) {
+	allPods := GetPods(namespace, context, labels)
+	if service == "" {
+		return allPods
+	}
+	for _, pod := range GetPods(namespace, context, labels) {
 		if strings.Contains(pod, service) {
 			pods = append(pods, pod)
 		}
@@ -111,12 +121,15 @@ func GetMatchingPods(service string, namespace string, context string) []string 
 	return pods
 }
 
-func K8sCommandArgs(args []string, namespace string, context string) []string {
+func K8sCommandArgs(args []string, namespace string, context string, labels string) []string {
 	if namespace != "" {
 		args = append(args, fmt.Sprintf("--namespace=%v", namespace))
 	}
 	if context != "" {
 		args = append(args, fmt.Sprintf("--context=%v", context))
+	}
+	if labels != "" {
+		args = append(args, fmt.Sprintf("--selector=%v", labels))
 	}
 	return args
 }

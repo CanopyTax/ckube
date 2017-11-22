@@ -13,6 +13,7 @@ var cfgFile string
 var namespace string
 var context string
 var kubeconfig string
+var labels string
 
 var RootCmd = &cobra.Command{
 	Use:   "ckube",
@@ -36,6 +37,7 @@ func init() {
 	RootCmd.PersistentFlags().StringVarP(&namespace, "namespace", "n", "", "the kubernetes namespace (defaults to value currently used by kubectl)")
 	RootCmd.PersistentFlags().StringVar(&context, "context", "", "the kubernetes context (defaults to value currently used by kubectl)")
 	RootCmd.PersistentFlags().StringVar(&kubeconfig, "kubeconfig", "", "path to kubeconfig file to use for CLI requests (defaults to $HOME/.kube/config)")
+	RootCmd.PersistentFlags().StringVarP(&labels, "labels", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)")
 }
 
 // initConfig reads in config file and ENV variables if set.

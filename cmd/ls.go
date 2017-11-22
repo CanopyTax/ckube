@@ -21,7 +21,7 @@ Examples:
   # List all pods starting with 'nginx'
   ckube ls nginx`,
 	Run: func(cmd *cobra.Command, args []string) {
-		pods := util.RawK8sOutput(namespace, context, "get", "pods")
+		pods := util.RawK8sOutput(namespace, context, labels, "get", "pods")
 		if len(args) > 0 {
 			searchString := args[0]
 			pods = util.FilterOutput(pods, searchString, false)
