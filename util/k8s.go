@@ -2,17 +2,17 @@ package util
 
 import (
 	"fmt"
-	"strings"
-	"sync"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"text/tabwriter"
 	"os"
+	"strings"
+	"sync"
+	"text/tabwriter"
 )
 
 type OutputManager struct {
 	sync.RWMutex
-	output []string
+	output        []string
 	HeaderColumns []string
 }
 
@@ -51,7 +51,6 @@ func (o *OutputManager) tabbedString(output string) string {
 	return tabbedString
 }
 
-
 func GetPods(namespace string, context string, labels string) []string {
 	var pods []string
 	args := K8sCommandArgs([]string{"get", "pods"}, namespace, context, labels)
@@ -83,7 +82,7 @@ func FilterOutput(lines []string, search string, stripHeader bool) []string {
 	for _, line := range lines[1:] {
 		split := strings.Split(line, " ")
 		if len(split) > 0 {
-			if strings.Contains(split[0], search) || search == ""{
+			if strings.Contains(split[0], search) || search == "" {
 				if line != "" {
 					output = append(output, line)
 				}
@@ -123,7 +122,11 @@ func GetMatchingPods(service string, namespace string, context string, labels st
 
 func K8sCommandArgs(args []string, namespace string, context string, labels string) []string {
 	if namespace != "" {
-		args = append(args, fmt.Sprintf("--namespace=%v", namespace))
+		if namespace == "all" {
+			args = append(args, fmt.Sprintf("--all-namespaces"))
+		} else {
+			args = append(args, fmt.Sprintf("--namespace=%v", namespace))
+		}
 	}
 	if context != "" {
 		args = append(args, fmt.Sprintf("--context=%v", context))
