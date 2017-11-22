@@ -34,7 +34,7 @@ func init() {
 	//RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ckube.yaml)")
 	// if options are added to the cli to be passed through to kubectl they should mimiic the naming
 	// used by kubectl whenever possible to provide a familiar and consistent experience
-	RootCmd.PersistentFlags().StringVarP(&namespace, "namespace", "n", "", "the kubernetes namespace (defaults to value currently used by kubectl)")
+	RootCmd.PersistentFlags().StringVarP(&namespace, "namespace", "n", "", "the kubernetes namespace (defaults to value currently used by kubectl) or 'all' for all namespaces")
 	RootCmd.PersistentFlags().StringVar(&context, "context", "", "the kubernetes context (defaults to value currently used by kubectl)")
 	RootCmd.PersistentFlags().StringVar(&kubeconfig, "kubeconfig", "", "path to kubeconfig file to use for CLI requests (defaults to $HOME/.kube/config)")
 	RootCmd.PersistentFlags().StringVarP(&labels, "labels", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)")
