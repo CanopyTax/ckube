@@ -3,15 +3,15 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/spf13/cobra"
 	"github.com/devonmoss/ckube/util"
+	"github.com/spf13/cobra"
 )
 
 // lsCmd represents the ls command
 var lsCmd = &cobra.Command{
-	Use:   "ls [NAME]",
+	Use:     "ls [NAME]",
 	Aliases: []string{"get"},
-	Short: "list pods in kubernetes",
+	Short:   "list pods in kubernetes",
 	Long: `List pods in kubernetes matching the specified Value
 
 Examples:

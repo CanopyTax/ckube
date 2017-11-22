@@ -7,16 +7,16 @@ import (
 	"github.com/spf13/cobra"
 	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"text/tabwriter"
 	"os"
+	"text/tabwriter"
 )
 
 // nodesCmd represents the nodes command
 var nodesCmd = &cobra.Command{
-	Use:   "nodes",
+	Use:     "nodes",
 	Aliases: []string{"node"},
-	Short: "Lists pods grouped by the node",
-	Long: `Lists pods grouped by node`,
+	Short:   "Lists pods grouped by the node",
+	Long:    `Lists pods grouped by node`,
 	Run: func(cmd *cobra.Command, args []string) {
 		printNodeView()
 	},
@@ -31,7 +31,8 @@ func printNodeView() {
 		fmt.Fprintln(w, headerLine)
 		for _, pod := range pods {
 			ps := NewPodStatus(pod)
-			statusLine := fmt.Sprintf("\t%v\t%v/%v\t%v\t%v\t%v\t", pod.Name, ps.ready, ps.total, pod.Status.Phase, ps.restarts, pod.Status.StartTime)
+			age := &util.Age{Time: pod.Status.StartTime.Time}
+			statusLine := fmt.Sprintf("\t%v\t%v/%v\t%v\t%v\t%v\t", pod.Name, ps.ready, ps.total, pod.Status.Phase, ps.restarts, age.Relative())
 			fmt.Fprintln(w, statusLine)
 		}
 		w.Flush()

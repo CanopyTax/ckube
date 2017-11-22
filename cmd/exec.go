@@ -3,9 +3,9 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/devonmoss/ckube/util"
 	"github.com/spf13/cobra"
 	"sync"
-	"github.com/devonmoss/ckube/util"
 )
 
 var tty, stdin, all bool

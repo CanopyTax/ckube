@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"github.com/devonmoss/ckube/util"
+	"github.com/spf13/cobra"
 	"sync"
 )
 
@@ -24,7 +24,7 @@ For example:
 		} else {
 			pods = util.GetPods(namespace, context, labels)
 		}
-		oMan := &util.OutputManager{HeaderColumns:[]string{"NAME", "CPU(cores)", "MEMORY(bytes)"}}
+		oMan := &util.OutputManager{HeaderColumns: []string{"NAME", "CPU(cores)", "MEMORY(bytes)"}}
 		if len(pods) > 0 {
 			var wg sync.WaitGroup
 			for _, pod := range pods {
