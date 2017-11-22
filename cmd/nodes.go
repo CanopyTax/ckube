@@ -17,7 +17,7 @@ import (
 var nodesCmd = &cobra.Command{
 	Use:     "nodes",
 	Aliases: []string{"node"},
-	Short:   "Lists pods grouped by the node",
+	Short:   "Lists pods grouped by node",
 	Long:    `Lists pods grouped by node`,
 	Run: func(cmd *cobra.Command, args []string) {
 		printNodeView()

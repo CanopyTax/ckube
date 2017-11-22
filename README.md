@@ -12,7 +12,6 @@ Find the latest binaries [here](https://github.com/devonmoss/ckube/releases/)
 
 ```$xslt
 $ ckube
-
 A CLI to simplify working with kubectl.
 
 Usage:
@@ -23,14 +22,18 @@ Available Commands:
   help        Help about any command
   logs        get logs from a service
   ls          list pods in kubernetes
+  nodes       Lists pods grouped by node
   top         View cpu and memory usage for pods
 
 Flags:
-      --context string     the kubernetes context (defaults to value currently used by kubectl)
-  -h, --help               help for ckube
-  -n, --namespace string   the kubernetes namespace (defaults to value currently used by kubectl)
+      --context string      the kubernetes context (defaults to value currently used by kubectl)
+  -h, --help                help for ckube
+      --kubeconfig string   path to kubeconfig file to use for CLI requests (defaults to $HOME/.kube/config)
+  -l, --labels string       Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+  -n, --namespace string    the kubernetes namespace (defaults to value currently used by kubectl)
 
 Use "ckube [command] --help" for more information about a command.
+
 
 ```
 
@@ -51,7 +54,7 @@ Getting logs for the nginx service is easy with `ckube`
 ckube logs nginx
 
 # all nginx pods
-ckube logs nginx
+ckube logs nginx -a
 
 # follow the logs
 ckube logs nginx -f
