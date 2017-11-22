@@ -6,7 +6,7 @@ before_deploy:
 - GOOS=linux GOARCH=amd64 go build -o ckube_linux_amd64/ckube
 - cp LICENSE ckube_linux_amd64/LICENSE
 - GOOS=linux GOARCH=386 go build -o ckube_linux_386/ckube
-- cp LICENSE ckube_linux_amd_386/LICENSE
+- cp LICENSE ckube_linux_386/LICENSE
 - GOOS=linux GOARCH=arm go build -o ckube_linux_arm/ckube
 - cp LICENSE ckube_linux_arm/LICENSE
 - GOOS=darwin GOARCH=amd64 go build -o ckube_darwin_amd64/ckube
