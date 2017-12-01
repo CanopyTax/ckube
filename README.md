@@ -66,6 +66,12 @@ Similar concurrent functionality exists for `exec`
 
 ![](https://github.com/devonmoss/ckube/blob/master/images/complex-exec.gif?raw=true)
 
+You can toggle through your services and see the associated pods. `ckube service`
+![](https://github.com/devonmoss/ckube/blob/master/images/services.gif?raw=true)
+
+You can use `ckube nodes` to show which pods are running on each node
+[![asciicast](https://asciinema.org/a/150564.png)](https://asciinema.org/a/150564)
+
 Read the blog post about `ckube` [here](https://devonmoss.com/concurrent-kubectl)
 
 #### Contributing
