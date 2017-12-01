@@ -23,6 +23,7 @@ Available Commands:
   logs        get logs from a service
   ls          list pods in kubernetes
   nodes       Lists pods grouped by node
+  service     Shows a view of your services
   top         View cpu and memory usage for pods
 
 Flags:
@@ -33,7 +34,6 @@ Flags:
   -n, --namespace string    the kubernetes namespace (defaults to value currently used by kubectl)
 
 Use "ckube [command] --help" for more information about a command.
-
 
 ```
 

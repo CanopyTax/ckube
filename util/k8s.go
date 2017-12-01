@@ -146,3 +146,11 @@ func GetClientset(kubeconfig string) *kubernetes.Clientset {
 	}
 	return clientset
 }
+
+func KeysString(m map[string]string) string {
+	keys := make([]string, 0, len(m))
+	for k, v := range m {
+		keys = append(keys, fmt.Sprintf("%s=%s", k, v))
+	}
+	return strings.Join(keys, ",")
+}
