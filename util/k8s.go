@@ -4,52 +4,8 @@ import (
 	"fmt"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"os"
 	"strings"
-	"sync"
-	"text/tabwriter"
 )
-
-type OutputManager struct {
-	sync.RWMutex
-	output        []string
-	HeaderColumns []string
-}
-
-func (o *OutputManager) Append(s ...string) {
-	o.Lock()
-	defer o.Unlock()
-
-	o.output = append(o.output, s...)
-}
-
-func (o *OutputManager) GetOutput() []string {
-	return o.output
-}
-
-func (o *OutputManager) Print() {
-	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.StripEscape)
-	var headerLine string
-	for _, s := range o.HeaderColumns {
-		headerLine += s + "\t"
-	}
-	fmt.Fprintln(w, headerLine)
-	for _, line := range o.output {
-		fmt.Fprintln(w, o.tabbedString(line))
-	}
-	w.Flush()
-}
-
-func (o *OutputManager) tabbedString(output string) string {
-	splits := strings.Split(output, " ")
-	var tabbedString string
-	for _, s := range splits {
-		if s != "" {
-			tabbedString += s + "\t"
-		}
-	}
-	return tabbedString
-}
 
 func GetPods(namespace string, context string, labels string) []string {
 	var pods []string
