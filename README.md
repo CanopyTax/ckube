@@ -21,9 +21,9 @@ Available Commands:
   exec        execute a command in a container
   help        Help about any command
   logs        get logs from a service
-  ls          list pods in kubernetes
+  ls          Interactive list of pods
   nodes       Lists pods grouped by node
-  service     Shows a view of your services
+  service     Interactive view of your services
   top         View cpu and memory usage for pods
 
 Flags:

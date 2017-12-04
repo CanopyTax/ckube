@@ -14,8 +14,8 @@ import (
 var serviceCmd = &cobra.Command{
 	Use:     "service",
 	Aliases: []string{"services", "svc"},
-	Short:   "Shows a view of your services",
-	Long:    `Sows a view of your services`,
+	Short:   "Interactive view of your services",
+	Long:    `Shows an interactive view of your services`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if namespace == "" {
 			namespace = "default"
