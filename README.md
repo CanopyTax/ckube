@@ -72,6 +72,9 @@ You can toggle through your services and see the associated pods. `ckube service
 You can use `ckube nodes` to show which pods are running on each node
 [![asciicast](https://asciinema.org/a/150564.png)](https://asciinema.org/a/150564)
 
+Get an interactive view of your pods with `ckube ls`. You can further refine the prompt results by searching using `/`. Selecting a pod will print detailed pod information returned by `kubectl describe`
+![](https://github.com/devonmoss/ckube/blob/master/images/list-interactive.gif?raw=true)
+
 Read the blog post about `ckube` [here](https://devonmoss.com/concurrent-kubectl)
 
 #### Contributing
