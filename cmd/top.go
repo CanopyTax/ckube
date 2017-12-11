@@ -31,7 +31,7 @@ For example:
 				wg.Add(1)
 				go func(p string) {
 					defer wg.Done()
-					lines := util.RawK8sOutput(namespace, context, "top", "pod", p)
+					lines := util.RawK8sOutput(namespace, context, labels, "top", "pod", p)
 					oMan.Append(lines[1])
 				}(pod)
 			}
