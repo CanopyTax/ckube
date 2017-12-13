@@ -31,8 +31,7 @@ Examples:
   ckube logs
 
   # Show interactive list of pods. Selecting a pod will follow its logs.
-  ckube logs -f
-`,
+  ckube logs -f`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var serviceName string
 		if len(args) > 0 {
