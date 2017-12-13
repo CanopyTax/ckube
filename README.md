@@ -18,6 +18,7 @@ Usage:
   ckube [command]
 
 Available Commands:
+  deployment  Get information about deployments
   exec        execute a command in a container
   help        Help about any command
   logs        get logs from a service
