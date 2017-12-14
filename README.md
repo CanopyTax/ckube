@@ -60,29 +60,29 @@ ckube logs nginx -a
 # follow the logs
 ckube logs nginx -f
 ```
-![](https://github.com/devonmoss/ckube/blob/master/images/logs.gif?raw=true)
+![](https://github.com/canopytax/ckube/blob/master/images/logs.gif?raw=true)
 
 Similar concurrent functionality exists for `exec`
-![](https://github.com/devonmoss/ckube/blob/master/images/exec.gif?raw=true)
+![](https://github.com/canopytax/ckube/blob/master/images/exec.gif?raw=true)
 
-![](https://github.com/devonmoss/ckube/blob/master/images/complex-exec.gif?raw=true)
+![](https://github.com/canopytax/ckube/blob/master/images/complex-exec.gif?raw=true)
 
 You can toggle through your services and see the associated pods. `ckube service`
-![](https://github.com/devonmoss/ckube/blob/master/images/services.gif?raw=true)
+![](https://github.com/canopytax/ckube/blob/master/images/services.gif?raw=true)
 
 You can use `ckube nodes` to show which pods are running on each node
 [![asciicast](https://asciinema.org/a/150564.png)](https://asciinema.org/a/150564)
 
 Get an interactive view of your pods with `ckube ls`. You can further refine the prompt results by searching using `/`. Selecting a pod will print detailed pod information returned by `kubectl describe`
-![](https://github.com/devonmoss/ckube/blob/master/images/list-interactive.gif?raw=true)
+![](https://github.com/canopytax/ckube/blob/master/images/list-interactive.gif?raw=true)
 
 Read the blog post about `ckube` [here](https://devonmoss.com/concurrent-kubectl)
 
 #### Contributing
 PR's accepted
 
-If you are looking to build the project:
+If you are looking to build the project or would like to contribute:
 ```$xslt
-go get -d github.com/devonmoss/ckube
-cd $GOPATH/src/github.com/devonmoss/ckube
+go get -d github.com/canopytax/ckube
+cd $GOPATH/src/github.com/canopytax/ckube
 ```
