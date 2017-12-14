@@ -1,5 +1,5 @@
 # Concurrent kubectl
-![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg) [![Build Status](https://travis-ci.org/devonmoss/ckube.svg?branch=master)](https://travis-ci.org/devonmoss/ckube) [![Go Report Card](https://goreportcard.com/badge/github.com/devonmoss/ckube)](https://goreportcard.com/report/github.com/devonmoss/ckube) [![GitHub release](https://img.shields.io/github/release/devonmoss/ckube.svg)](https://github.com/devonmoss/ckube/releases/latest) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Kelsey Hightower Approved!](https://img.shields.io/badge/Hightower-approved-blue.svg) [![Build Status](https://travis-ci.org/CanopyTax/ckube.svg?branch=master)](https://travis-ci.org/CanopyTax/ckube) [![Go Report Card](https://goreportcard.com/badge/github.com/CanopyTax/ckube)](https://goreportcard.com/report/github.com/CanopyTax/ckube) [![GitHub release](https://img.shields.io/github/release/CanopyTax/ckube.svg)](https://github.com/CanopyTax/ckube/releases/latest) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A cli to simplify working with kubectl for some common workflows
 
