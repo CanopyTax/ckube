@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/devonmoss/ckube/util"
+	"github.com/canopytax/ckube/util"
 	"github.com/spf13/cobra"
 	"sync"
 )

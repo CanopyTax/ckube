@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/devonmoss/ckube/util"
+	"github.com/canopytax/ckube/util"
 	"github.com/spf13/cobra"
 )
 

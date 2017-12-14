@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/devonmoss/ckube/util"
+	"github.com/canopytax/ckube/util"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

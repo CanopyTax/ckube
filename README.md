@@ -4,7 +4,7 @@
 A cli to simplify working with kubectl for some common workflows
 
 #### Installation
-Find the latest binaries [here](https://github.com/devonmoss/ckube/releases/)
+Find the latest binaries [here](https://github.com/canopytax/ckube/releases/)
 
 #### Usage
 `ckube` lets you think in terms of [services](https://kubernetes.io/docs/concepts/services-networking/service/) instead of [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) (mostly).

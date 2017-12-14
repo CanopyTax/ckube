@@ -1,6 +1,6 @@
 package main
 
-import "github.com/devonmoss/ckube/cmd"
+import "github.com/canopytax/ckube/cmd"
 
 func main() {
 	cmd.Execute()
