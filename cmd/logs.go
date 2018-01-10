@@ -6,9 +6,12 @@ import (
 	"github.com/canopytax/ckube/util"
 	"github.com/spf13/cobra"
 	"sync"
+	"strconv"
 )
 
 var follow bool
+var tail int
+var tailString string
 
 // logsCmd represents the logs command
 var logsCmd = &cobra.Command{
@@ -24,6 +27,9 @@ Examples:
   # Return logs for all my-cool-service pods
   ckube logs my-cool
 
+  # Return only the most recent 20 lines of output for all my-cool-service pods
+  ckube logs my-cool --tail=20
+
   # Begin streaming the logs for all pods that begin with 'c'
   ckube logs -f c
 
@@ -31,8 +37,12 @@ Examples:
   ckube logs
 
   # Show interactive list of pods. Selecting a pod will follow its logs.
-  ckube logs -f`,
+  ckube logs -f
+`,
 	Run: func(cmd *cobra.Command, args []string) {
+		tailString = strconv.Itoa(tail)
+		fmt.Println(tailString)
+
 		var serviceName string
 		if len(args) > 0 {
 			serviceName = args[0]
@@ -65,7 +75,7 @@ func streamLogs(pods []string) {
 	if len(pods) > 0 {
 		if follow {
 			for _, pod := range pods {
-				cmdArgs := util.K8sCommandArgs([]string{"logs", "-f", pod}, namespace, context, "")
+				cmdArgs := util.K8sCommandArgs([]string{"logs", "--tail", tailString, "-f", pod}, namespace, context, "")
 				go util.StreamCommand(c, cm.GetPrefix(pod), "kubectl", cmdArgs...)
 			}
 			for {
@@ -82,7 +92,7 @@ func streamLogs(pods []string) {
 				wg.Add(1)
 				go func(p string) {
 					defer wg.Done()
-					cmdArgs := util.K8sCommandArgs([]string{"logs", p}, namespace, context, "")
+					cmdArgs := util.K8sCommandArgs([]string{"logs", "--tail", tailString, p}, namespace, context, "")
 					prefix := cm.GetPrefix(p)
 					logs := util.RunCommand("kubectl", cmdArgs...)
 					for _, line := range logs {
@@ -100,4 +110,5 @@ func streamLogs(pods []string) {
 func init() {
 	RootCmd.AddCommand(logsCmd)
 	logsCmd.Flags().BoolVarP(&follow, "follow", "f", false, "Specify if the logs should be streamed")
+	logsCmd.Flags().IntVar(&tail, "tail", -1, "lines of recent log file to display. Defaults to -1, showing all log lines")
 }
