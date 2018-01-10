@@ -41,7 +41,6 @@ Examples:
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		tailString = strconv.Itoa(tail)
-		fmt.Println(tailString)
 
 		var serviceName string
 		if len(args) > 0 {
