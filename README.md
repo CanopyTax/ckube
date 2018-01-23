@@ -7,9 +7,6 @@ A cli to simplify working with kubectl for some common workflows
 Find the latest binaries [here](https://github.com/canopytax/ckube/releases/)
 
 #### Usage
-`ckube` lets you think in terms of [services](https://kubernetes.io/docs/concepts/services-networking/service/) instead of [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) (mostly).
-
-
 ```$xslt
 $ ckube
 A CLI to simplify working with kubectl.
@@ -38,7 +35,7 @@ Use "ckube [command] --help" for more information about a command.
 
 ```
 
-Kubernetes services are often an abstraction over multiple pods, particularly if the replicas are scaled. If a k8s cluster has a service called `nginx` you could have several pods which might be named something like this:
+Targeting pods can be burdensome (i.e. in a deployment with replicas). If a k8s cluster has a service called `nginx` you could have several pods which might be named something like this:
 ```$xslt
 nginx-3528986049-kpd4z
 nginx-3528986049-71s10 
