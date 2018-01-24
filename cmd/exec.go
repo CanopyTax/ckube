@@ -2,10 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/canopytax/ckube/util"
 	"github.com/spf13/cobra"
-	"sync"
 )
 
 var tty, stdin, all bool

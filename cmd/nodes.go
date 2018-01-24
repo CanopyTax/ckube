@@ -2,15 +2,15 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"strings"
+	"text/tabwriter"
 
 	"github.com/canopytax/ckube/util"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"os"
-	"strings"
-	"text/tabwriter"
 )
 
 // nodesCmd represents the nodes command

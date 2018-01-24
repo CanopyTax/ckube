@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"strconv"
+	"sync"
 
 	"github.com/canopytax/ckube/util"
 	"github.com/spf13/cobra"
-	"sync"
-	"strconv"
 )
 
 var follow bool

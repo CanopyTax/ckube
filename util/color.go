@@ -2,9 +2,10 @@ package util
 
 import (
 	"fmt"
-	"github.com/fatih/color"
 	"strings"
 	"sync"
+
+	"github.com/fatih/color"
 )
 
 type ColorManager struct {

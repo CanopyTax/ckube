@@ -2,9 +2,10 @@ package util
 
 import (
 	"fmt"
+	"strings"
+
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"strings"
 )
 
 func GetPods(namespace string, context string, labels string) []string {

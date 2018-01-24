@@ -1,9 +1,10 @@
 package cmd
 
 import (
+	"sync"
+
 	"github.com/canopytax/ckube/util"
 	"github.com/spf13/cobra"
-	"sync"
 )
 
 // topCmd represents the top command
