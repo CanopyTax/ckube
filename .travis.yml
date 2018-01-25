@@ -41,6 +41,7 @@ deploy:
   - ckube_linux_arm.zip
   - ckube_darwin_amd64.tar.gz
   - ckube_darwin_amd64.zip
+  - ckube_windows_amd64.zip
   skip_cleanup: true
   on:
     tags: true
