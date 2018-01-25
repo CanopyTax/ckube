@@ -20,6 +20,12 @@
   revision = "de5bf2ad457846296e2031421a34e2568e304e35"
 
 [[projects]]
+  name = "github.com/canopytax/ckube"
+  packages = ["cmd","util"]
+  revision = "9968074538c4a11ac31fec6381ce120f81a50866"
+  version = "v0.4.2"
+
+[[projects]]
   branch = "master"
   name = "github.com/chzyer/readline"
   packages = ["."]
@@ -334,6 +340,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "66e2e1b31c2d048463b8e19e11b395700623595c6565c2762f0b10aa875e9436"
+  inputs-digest = "1abc6d006d8484409e5ccb2694aad34381872c50e582492e0b589e8b47b4b316"
   solver-name = "gps-cdcl"
   solver-version = 1
