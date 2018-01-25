@@ -52,3 +52,7 @@
 [[constraint]]
   name = "k8s.io/client-go"
   branch = "master"
+
+[[constraint]]
+  name = "github.com/inconshreveable/mousetrap"
+  version = "1.0.0"
