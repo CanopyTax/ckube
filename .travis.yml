@@ -25,6 +25,9 @@ before_deploy:
 - cp LICENSE ckube_darwin_amd64/LICENSE
 - tar -czvf ckube_darwin_amd64.tar.gz ckube_darwin_amd64
 - zip -r ckube_darwin_amd64.zip ckube_darwin_amd64
+- GOOS=windows GOARCH=amd64 go build -o ckube_windows_amd64/ckube.exe
+- cp LICENSE ckube_windows_amd64/LICENSE
+- zip -r ckube_windows_amd64.zip ckube_windows_amd64
 deploy:
   provider: releases
   api_key:
