@@ -4,7 +4,11 @@
 A cli to simplify working with kubectl for some common workflows
 
 #### Installation
-Find the latest binaries [here](https://github.com/canopytax/ckube/releases/)
+Find the latest binaries [here](https://github.com/canopytax/ckube/releases/) or use `homebrew` on macOS
+```
+brew tap canopytax/ckube
+brew install ckube
+```
 
 #### Usage
 ```$xslt
