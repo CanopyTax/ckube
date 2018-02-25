@@ -36,7 +36,7 @@ func init() {
 	// used by kubectl whenever possible to provide a familiar and consistent experience
 	RootCmd.PersistentFlags().StringVarP(&namespace, "namespace", "n", "", "the kubernetes namespace (defaults to value currently used by kubectl)")
 	RootCmd.PersistentFlags().StringVar(&context, "context", "", "the kubernetes context (defaults to value currently used by kubectl)")
-	RootCmd.PersistentFlags().StringVar(&kubeconfig, "kubeconfig", "", "path to kubeconfig file to use for CLI requests (defaults to $HOME/.kube/config)")
+	RootCmd.PersistentFlags().StringVar(&kubeconfig, "kubeconfig", "", "path to kubeconfig file to use for CLI requests (defaults to $KUBECONFIG or $HOME/.kube/kubeconfig)")
 	RootCmd.PersistentFlags().StringVarP(&labels, "labels", "l", "", "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)")
 }
 
@@ -66,7 +66,9 @@ func initConfig() {
 	}
 
 	if kubeconfig == "" {
-		if h := os.Getenv("HOME"); h != "" {
+		if kenv := viper.GetString("kubeconfig"); kenv != "" {
+			kubeconfig = kenv
+		} else if h := os.Getenv("HOME"); h != "" {
 			kubeconfig = fmt.Sprintf("%v/.kube/config", h)
 		} else {
 			panic(fmt.Errorf("error setting default kubeconfig. $HOME not set"))
