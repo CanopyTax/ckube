@@ -66,7 +66,7 @@ func initConfig() {
 	}
 
 	if kubeconfig == "" {
-		if kenv := viper.GetString("kubeconfig"); kenv != "" {
+		if kenv := os.Getenv("KUBECONFIG"); kenv != "" {
 			kubeconfig = kenv
 		} else if h := os.Getenv("HOME"); h != "" {
 			kubeconfig = fmt.Sprintf("%v/.kube/config", h)
