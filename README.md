@@ -31,7 +31,7 @@ Available Commands:
 Flags:
       --context string      the kubernetes context (defaults to value currently used by kubectl)
   -h, --help                help for ckube
-      --kubeconfig string   path to kubeconfig file to use for CLI requests (defaults to $HOME/.kube/config)
+      --kubeconfig string   path to kubeconfig file to use for CLI requests (defaults to $KUBECONFIG or $HOME/.kube/config)
   -l, --labels string       Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
   -n, --namespace string    the kubernetes namespace (defaults to value currently used by kubectl)
 
@@ -42,7 +42,7 @@ Use "ckube [command] --help" for more information about a command.
 Targeting pods can be burdensome (i.e. in a deployment with replicas). If a k8s cluster has a service called `nginx` you could have several pods which might be named something like this:
 ```$xslt
 nginx-3528986049-kpd4z
-nginx-3528986049-71s10 
+nginx-3528986049-71s10
 nginx-3528986049-f6mwf
 nginx-3528986049-ltx6j
 nginx-3528986049-m3cmm
