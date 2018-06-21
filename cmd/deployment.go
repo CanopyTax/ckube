@@ -72,7 +72,7 @@ func printDeploymentView() {
 }
 
 func deploymentInfo() []DeploymentInfo {
-	clientset := util.GetClientset(kubeconfig)
+	clientset := util.GetClientset(kubeconfig, context)
 
 	depList, err := clientset.AppsV1beta2().Deployments(namespace).List(metav1.ListOptions{})
 	if err != nil {
