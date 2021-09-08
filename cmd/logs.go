@@ -74,7 +74,7 @@ func streamLogs(pods []string) {
 	if len(pods) > 0 {
 		if follow {
 			for _, pod := range pods {
-				cmdArgs := util.K8sCommandArgs([]string{"logs", "--tail", tailString, "-f", pod}, namespace, context, "")
+				cmdArgs := util.K8sCommandArgs([]string{"logs", "--all-containers", "--tail", tailString, "-f", pod}, namespace, context, "")
 				go util.StreamCommand(c, cm.GetPrefix(pod), "kubectl", cmdArgs...)
 			}
 			for {
@@ -91,7 +91,7 @@ func streamLogs(pods []string) {
 				wg.Add(1)
 				go func(p string) {
 					defer wg.Done()
-					cmdArgs := util.K8sCommandArgs([]string{"logs", "--tail", tailString, p}, namespace, context, "")
+					cmdArgs := util.K8sCommandArgs([]string{"logs", "--all-containers", "--tail", tailString, p}, namespace, context, "")
 					prefix := cm.GetPrefix(p)
 					logs := util.RunCommand("kubectl", cmdArgs...)
 					for _, line := range logs {
