@@ -81,7 +81,7 @@ func NewPodStatus(pod v1.Pod) PodStatus {
 }
 
 func nodeMap() map[string]NodePodInfo {
-	clientset := util.GetClientset(kubeconfig)
+	clientset := util.GetClientset(kubeconfig, context)
 
 	podList, err := clientset.CoreV1().Pods(namespace).List(metav1.ListOptions{})
 	if err != nil {

@@ -53,7 +53,7 @@ func showServiceView() {
 }
 
 func getServiceInfo() []ServiceInfo {
-	clientset := util.GetClientset(kubeconfig)
+	clientset := util.GetClientset(kubeconfig, context)
 
 	serviceList, err := clientset.CoreV1().Services(namespace).List(metav1.ListOptions{})
 	if err != nil {

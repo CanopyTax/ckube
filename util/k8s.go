@@ -90,9 +90,13 @@ func K8sCommandArgs(args []string, namespace string, context string, labels stri
 	return args
 }
 
-func GetClientset(kubeconfig string) *kubernetes.Clientset {
-	// use the current context in kubeconfig
-	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
+func GetClientset(kubeconfig, context string) *kubernetes.Clientset {
+
+	rules := clientcmd.NewDefaultClientConfigLoadingRules()
+	rules.ExplicitPath = kubeconfig
+	overrides := &clientcmd.ConfigOverrides{CurrentContext: context}
+
+	config, err := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, overrides).ClientConfig()
 	if err != nil {
 		panic(err.Error())
 	}

@@ -65,13 +65,4 @@ func initConfig() {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
 
-	if kubeconfig == "" {
-		if kenv := os.Getenv("KUBECONFIG"); kenv != "" {
-			kubeconfig = kenv
-		} else if h := os.Getenv("HOME"); h != "" {
-			kubeconfig = fmt.Sprintf("%v/.kube/config", h)
-		} else {
-			panic(fmt.Errorf("error setting default kubeconfig. $HOME not set"))
-		}
-	}
 }
