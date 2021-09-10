@@ -100,6 +100,18 @@ func GetDeploymentList(namespace string, context string, labels string) appsv1.D
 	return deployList
 }
 
+func GetPodListAllNamespaces(context string, labels string) corev1.PodList {
+	podString := RawK8sOutputString("", context, labels, []string{"get", "pods", "--all-namespaces", "-o", "json"}...)
+
+	var podList corev1.PodList
+	err := json.Unmarshal([]byte(podString), &podList)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return podList
+}
+
 func GetPodList(namespace string, context string, labels string) corev1.PodList {
 	podString := RawK8sOutputString(namespace, context, labels, []string{"get", "pods", "-o", "json"}...)
 

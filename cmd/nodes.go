@@ -79,7 +79,7 @@ func NewPodStatus(pod v1.Pod) PodStatus {
 }
 
 func nodeMap() map[string]NodePodInfo {
-	podList := util.GetPodList(namespace, context, labels)
+	podList := util.GetPodListAllNamespaces(context, labels)
 
 	nodeMap := make(map[string][]v1.Pod)
 	for _, pod := range podList.Items {
