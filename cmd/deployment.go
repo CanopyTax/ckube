@@ -6,7 +6,6 @@ import (
 	"github.com/canopytax/ckube/util"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"strings"
 	"time"
 )
@@ -72,12 +71,7 @@ func printDeploymentView() {
 }
 
 func deploymentInfo() []DeploymentInfo {
-	clientset := util.GetClientset(kubeconfig)
-
-	depList, err := clientset.AppsV1beta2().Deployments(namespace).List(metav1.ListOptions{})
-	if err != nil {
-		panic(fmt.Errorf("error listing deployments: %v", err))
-	}
+	depList := util.GetDeploymentList(namespace, context, labels)
 
 	var deploymentInfos []DeploymentInfo
 	for _, deployment := range depList.Items {
