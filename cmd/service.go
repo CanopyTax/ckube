@@ -7,7 +7,6 @@ import (
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 	"k8s.io/api/core/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
@@ -18,9 +17,6 @@ var serviceCmd = &cobra.Command{
 	Short:   "Interactive view of your services",
 	Long:    `Shows an interactive view of your services`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if namespace == "" {
-			namespace = "default"
-		}
 		showServiceView()
 	},
 }
@@ -53,22 +49,14 @@ func showServiceView() {
 }
 
 func getServiceInfo() []ServiceInfo {
-	clientset := util.GetClientset(kubeconfig)
-
-	serviceList, err := clientset.CoreV1().Services(namespace).List(metav1.ListOptions{})
-	if err != nil {
-		panic(fmt.Errorf("error listing services: %v", err))
-	}
+	serviceList := util.GetServiceList(namespace, context, labels)
 
 	var serviceInfos []ServiceInfo
 	for _, service := range serviceList.Items {
 		selector := service.Spec.Selector
 		if len(selector) > 0 {
+			podList := util.GetPodList(namespace, context, util.KeysString(selector))
 
-			podList, err := clientset.CoreV1().Pods(namespace).List(metav1.ListOptions{LabelSelector: util.KeysString(selector)})
-			if err != nil {
-				panic(fmt.Errorf("error listing pods: %v", err))
-			}
 			var podDetails []PodDetails
 			for _, pod := range podList.Items {
 				podDetails = append(podDetails, NewPodDetails(pod))

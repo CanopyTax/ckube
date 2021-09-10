@@ -10,7 +10,6 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"k8s.io/api/core/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
@@ -28,7 +27,6 @@ var nodesCmd = &cobra.Command{
 func printNodeView() {
 	nodeMap := nodeMap()
 	for _, nodePodInfo := range nodeMap {
-		//fmt.Println(node)
 		printNodeInfo(nodePodInfo.Node)
 		w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.StripEscape)
 		headerLine := fmt.Sprintf("\t%v\t%v\t%v\t%v\t%v\t", "NAME", "READY", "STATUS", "RESTARTS", "AGE")
@@ -81,17 +79,7 @@ func NewPodStatus(pod v1.Pod) PodStatus {
 }
 
 func nodeMap() map[string]NodePodInfo {
-	clientset := util.GetClientset(kubeconfig)
-
-	podList, err := clientset.CoreV1().Pods(namespace).List(metav1.ListOptions{})
-	if err != nil {
-		panic(fmt.Errorf("error listing pods: %v", err))
-	}
-
-	nodeList, err := clientset.CoreV1().Nodes().List(metav1.ListOptions{})
-	if err != nil {
-		panic(fmt.Errorf("error listing pods: %v", err))
-	}
+	podList := util.GetPodList(namespace, context, labels)
 
 	nodeMap := make(map[string][]v1.Pod)
 	for _, pod := range podList.Items {
@@ -101,6 +89,8 @@ func nodeMap() map[string]NodePodInfo {
 			nodeMap[pod.Spec.NodeName] = []v1.Pod{pod}
 		}
 	}
+
+	nodeList := util.GetNodeList(context, labels)
 
 	nodePodMap := make(map[string]NodePodInfo)
 	for _, node := range nodeList.Items {
